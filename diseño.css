@@ -1,0 +1,40 @@
+body {
+    font-family: Arial, sans-serif;
+    margin: 20px;
+}
+
+h1 {
+    color: #6884ea;
+}
+
+
+form {
+    max-width: 400px;
+}
+
+label {
+    display: inline-block;
+    width: 100px;
+    margin-bottom: 10px;
+}
+
+input, select {
+    padding: 5px;
+    margin-bottom: 10px;
+    width: 180px;
+}
+
+button {
+    padding: 8px 15px;
+    margin-right: 5px;
+    cursor: pointer;
+}
+
+textarea {
+    font-family: monospace; /* Mantiene el ancho fijo para alinear correctamente los caracteres */
+    font-size: 16px;
+    white-space: pre;
+    width: 100%;
+    max-width: 350px;
+    margin-top: 5px;
+}
