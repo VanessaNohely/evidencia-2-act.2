@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="es">
 <head>
@@ -9,36 +10,46 @@
 <body>
 
     <h1>Dibujar Triángulos y Rectángulos</h1>
-    <h2>Evidencia 2 parte 2</h2>
+    <h2>Evidencia 2, practica 2</h2>
 
-    <form>
+    <form id="formulario">
         <label for="figura">Figura:</label>
-        <select name="figura" id="figura">
+        <select id="figura" name="figura">
             <option value="triangulo">Triángulo</option>
             <option value="rectangulo">Rectángulo</option>
-        </select><br>
+        </select>
+
+        <br>
 
         <label for="caracter">Carácter:</label>
-        <input type="text" name="caracter" id="caracter" maxlength="1" value="*"><br>
+        <input type="text" id="caracter" maxlength="1" value="*"
+               required>
 
-        <!-- Campo para la base (visible solo para rectángulo) -->
-        <div id="campo-base" style="display: none;">
-            <label for="base">Base:</label>
-            <input type="number" name="base" id="base" min="1"><br>
-        </div>
+        <br>
 
-        <!-- Campo para la altura (usado por ambas figuras) -->
-        <div id="campo-altura">
-            <label for="altura">Altura:</label>
-            <input type="number" name="altura" id="altura" min="1"><br>
-        </div>
+
+<div id="campo-base">
+    <label for="base">Base:</label>
+    <input type="number" id="base" min="1" max="100" required>
+    <br>
+</div>
+
+<div id="campo-altura">
+    <label for="altura">Altura:</label>
+    <input type="number" id="altura" min="1" max="100" required>
+    <br>
+</div>
+
 
         <button type="button" id="dibujar">Dibujar</button>
         <button type="button" id="limpiar">Limpiar</button>
 
         <br><br>
-        <label for="resultado">Resultado:</label><br>
-        <textarea id="resultado" rows="10" cols="30" readonly></textarea>
+
+        <label for="resultado">Resultado:</label>
+        <br>
+        <textarea id="resultado" rows="12" cols="35"
+                  readonly></textarea>
     </form>
 
     <script src="java.js"></script>

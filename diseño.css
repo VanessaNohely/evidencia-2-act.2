@@ -1,18 +1,24 @@
+
 body {
     font-family: Arial, sans-serif;
     margin: 20px;
+    background-color: #f4f6f9;
+    color: #333;
 }
 
 h1 {
-    color: #6884ea;
-}
-h2{
-    color: #a0aa85;
+    color: #8f976c;
 }
 
+h2 {
+    color: #5892c5;
+}
 
 form {
     max-width: 400px;
+    padding: 20px;
+    background-color: white;
+    border-radius: 10px;
 }
 
 label {
@@ -22,22 +28,34 @@ label {
 }
 
 input, select {
-    padding: 5px;
+    box-sizing: border-box;
+    padding: 7px;
     margin-bottom: 10px;
     width: 180px;
 }
 
 button {
     padding: 8px 15px;
-    margin-right: 5px;
+    margin: 5px 5px 5px 0;
     cursor: pointer;
+    border: none;
+    border-radius: 5px;
+    background-color: #9ede97;
+    color: white;
+}
+
+button:hover {
+    background-color: #5cc7d1;
 }
 
 textarea {
-    font-family: monospace; /* Mantiene el ancho fijo para alinear correctamente los caracteres */
+    box-sizing: border-box;
+    font-family: monospace;
     font-size: 16px;
+    line-height: 1.2;
     white-space: pre;
     width: 100%;
     max-width: 350px;
     margin-top: 5px;
+    resize: vertical;
 }

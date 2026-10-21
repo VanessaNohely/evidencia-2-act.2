@@ -1,77 +1,97 @@
+
 const selectFigura = document.getElementById("figura");
 const inputCaracter = document.getElementById("caracter");
 const inputBase = document.getElementById("base");
 const inputAltura = document.getElementById("altura");
-const campoBase = document.getElementById("campo-base");
 const textareaResultado = document.getElementById("resultado");
 
 const btnDibujar = document.getElementById("dibujar");
-const btnResetear = document.getElementById("limpiar");
+const btnLimpiar = document.getElementById("limpiar");
 
-// Mostrar u ocultar la caja de texto de la base según la figura seleccionada
-selectFigura.addEventListener("change", function () {
-    if (selectFigura.value === "rectangulo") {
-        campoBase.style.display = "block";
-    } else {
-        campoBase.style.display = "none";
-        inputBase.value = "";
-    }
-});
+// Dibujar la figura seleccionada
+btnDibujar.addEventListener("click", function () {
 
-btnDibujar.addEventListener("click", function (e) {
-    e.preventDefault();
+    const figura = selectFigura.value;
+    const caracter = inputCaracter.value;
+    const base = Number(inputBase.value);
+    const altura = Number(inputAltura.value);
 
-    let figura = selectFigura.value;
-    let char = inputCaracter.value;
-    let altura = parseInt(inputAltura.value);
-    let base = parseInt(inputBase.value);
-
-    // Validación del carácter
-    if (!char || char.length === 0) {
-        alert("Por favor, ingresa un carácter para dibujar.");
+    // Validar el carácter
+    if (caracter.trim() === "") {
+        alert("Ingresa un carácter para dibujar.");
+        inputCaracter.focus();
         return;
     }
 
-    // Tomar solo el primer carácter por si ingresan varios
-    char = char[0];
-
-    // Validaciones y lógica de dibujo
-    if (figura === "triangulo") {
-        if (isNaN(altura) || altura <= 0) {
-            alert("Ingresa una altura válida para el triángulo (número entero positivo).");
-            return;
-        }
-
-        let dibujo = "";
-        for (let i = 1; i <= altura; i++) {
-            dibujo += char.repeat(i) + "\n";
-        }
-        textareaResultado.value = dibujo;
-
-    } else if (figura === "rectangulo") {
-        if (isNaN(base) || base <= 0 || isNaN(altura) || altura <= 0) {
-            alert("Ingresa una base y altura válidas para el rectángulo (números enteros positivos).");
-            return;
-        }
-
-        let dibujo = "";
-        for (let i = 0; i < altura; i++) {
-            dibujo += char.repeat(base) + "\n";
-        }
-        textareaResultado.value = dibujo;
+    // Validar la base
+    if (
+        inputBase.value === "" ||
+        !Number.isInteger(base) ||
+        base < 1 ||
+        base > 100
+    ) {
+        alert("Ingresa una base entre 1 y 100.");
+        inputBase.focus();
+        return;
     }
+
+    // Validar la altura
+    if (
+        inputAltura.value === "" ||
+        !Number.isInteger(altura) ||
+        altura < 1 ||
+        altura > 100
+    ) {
+        alert("Ingresa una altura entre 1 y 100.");
+        inputAltura.focus();
+        return;
+    }
+
+    let dibujo = "";
+
+    // Dibujar triángulo
+    if (figura === "triangulo") {
+
+        for (let i = 1; i <= altura; i++) {
+
+            let cantidad;
+
+            if (altura === 1) {
+                cantidad = base;
+            } else {
+                cantidad = Math.round(
+                    1 + (i - 1) * (base - 1) / (altura - 1)
+                );
+            }
+
+            dibujo += caracter.repeat(cantidad) + "\n";
+        }
+
+    }
+
+    // Dibujar rectángulo
+    else if (figura === "rectangulo") {
+
+        for (let i = 1; i <= altura; i++) {
+            dibujo += caracter.repeat(base) + "\n";
+        }
+
+    }
+
+    // Mostrar el dibujo
+    textareaResultado.value = dibujo;
+
 });
 
-btnResetear.addEventListener("click", function (e) {
-    e.preventDefault();
+// Limpiar los campos
+btnLimpiar.addEventListener("click", function () {
 
     selectFigura.value = "triangulo";
     inputCaracter.value = "*";
     inputBase.value = "";
     inputAltura.value = "";
     textareaResultado.value = "";
-    
-    campoBase.style.display = "none";
 
     selectFigura.focus();
+
 });
